@@ -22,8 +22,8 @@ except:
 setup(
     name='scirocco-pyclient',
     version=roadwarrior.__version__,
-    download_url='https://github.com/eloylp/scirocco-pyclient/tarball/' + roadwarrior.__version__,
-    url='https://github.com/eloylp/scirocco-pyclient',
+    download_url='https://github.com/eloylp/roadwarrior/tarball/' + roadwarrior.__version__,
+    url='https://github.com/eloylp/roadwarrior',
     license='GNU AFFERO 3',
     author='eloylp',
     install_requires=reqs,
