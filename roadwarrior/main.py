@@ -12,7 +12,7 @@ class RoadWarrior:
             mediator = builder.build()
             mediator.run()
         except (IndexError, TypeError):
-            print "Not identified program"
+            print "Program identity not valid."
 
 
 if __name__ == '__main__':
