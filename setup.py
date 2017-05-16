@@ -20,7 +20,7 @@ except:
     readme_plain = ''
 
 setup(
-    name='scirocco-pyclient',
+    name='roadwarrior',
     version=roadwarrior.__version__,
     download_url='https://github.com/eloylp/roadwarrior/tarball/' + roadwarrior.__version__,
     url='https://github.com/eloylp/roadwarrior',
