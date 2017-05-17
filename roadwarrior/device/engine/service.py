@@ -1,4 +1,4 @@
-from services.base import ServiceThread
+from device.base import ServiceThread
 
 
 class EngineService(ServiceThread):

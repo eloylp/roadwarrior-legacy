@@ -1,10 +1,10 @@
 from Queue import Queue
 from threading import Event
 
-from mediators.patrol import Patrol
-from services.communications.service import CommunicationsService
-from services.engine.service import EngineService
-from services.sensors.service import SensorsService
+from mediator.patrol import Patrol
+from device.communication.service import CommunicationsService
+from device.engine.service import EngineService
+from device.sensor.service import SensorsService
 
 
 class PatrolBuilder:
