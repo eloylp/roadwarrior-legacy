@@ -1,14 +1,15 @@
 from Queue import Queue
 from threading import Event
 
-from mediator.patrol import Patrol
-from device.communication.service import CommunicationsService
-from device.engine.service import EngineService
-from device.sensor.service import UltrasonicSensorService
+from roadwarrior.device.communication.service import CommunicationsService
+from roadwarrior.device.engine.service import EngineService
+from roadwarrior.device.sensor.service import UltrasonicSensorService
+from roadwarrior.mediator.patrol import Patrol
 
 
 class PatrolBuilder:
     def build(self):
+
         com_flag = Event()
         com_queue_in = Queue()
         com_queue_out = Queue()

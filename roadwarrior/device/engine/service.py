@@ -1,4 +1,4 @@
-from device.base import ServiceThread
+from roadwarrior.device.base import ServiceThread
 
 
 class EngineService(ServiceThread):

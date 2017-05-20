@@ -1,9 +1,9 @@
 import threading
 from Queue import Queue
 
-from device.base import ServiceThread
-from device.sensor.definition import Sensors
-from device.sensor.sensor import UltrasonicSensor
+from roadwarrior.device.base import ServiceThread
+from roadwarrior.device.sensor.definition import Sensors
+from roadwarrior.device.sensor.sensor import UltrasonicSensor
 
 
 class UltrasonicSensorService(ServiceThread):
