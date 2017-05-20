@@ -2,10 +2,9 @@ from roadwarrior.device.base import ServiceThread
 
 
 class EngineService(ServiceThread):
-    def __init__(self, flag, queue_in, motors):
+    def __init__(self, flag, queue_in, motors, freq=0.5):
 
-        super(EngineService, self).__init__(flag, queue_in, False)
-
+        super(EngineService, self).__init__(flag, queue_in, False, freq)
         self.motors = motors
 
     def process(self):
