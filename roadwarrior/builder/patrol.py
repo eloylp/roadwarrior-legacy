@@ -1,7 +1,8 @@
 from Queue import Queue
 from threading import Event
 
-from roadwarrior.device.communication.service import CommunicationsService
+from device.engine.engine import EngineBuilder
+from device.sensor.sensor import UltrasonicSensorBuilder
 from roadwarrior.device.engine.service import EngineService
 from roadwarrior.device.sensor.service import UltrasonicSensorService
 from roadwarrior.mediator.patrol import Patrol
@@ -9,22 +10,17 @@ from roadwarrior.mediator.patrol import Patrol
 
 class PatrolBuilder:
     def build(self):
+        engine_flag = Event()
+        engine_command_queue = Queue()
 
-        com_flag = Event()
-        com_queue_in = Queue()
-        com_queue_out = Queue()
+        sensor_flag = Event()
+        sensor_queue_out = Queue()
 
-        eng_flag = Event()
-        eng_queue_in = Queue()
-        eng_queue_out = Queue()
+        motors = EngineBuilder().get_engines()
+        sensors = UltrasonicSensorBuilder().get_ultrasonic_sensors()
 
-        sens_flag = Event()
-        sens_queue_in = Queue()
-        sens_queue_out = Queue()
-
-        communications_service = CommunicationsService(com_flag, com_queue_in, com_queue_out)
-        engine_service = EngineService(eng_flag, eng_queue_in, eng_queue_out)
-        sensors_service = UltrasonicSensorService(sens_flag, sens_queue_in, sens_queue_out)
-        patrol = Patrol(communications_service, engine_service, sensors_service)
+        engine_service = EngineService(engine_flag, engine_command_queue, motors)
+        sensors_service = UltrasonicSensorService(sensor_flag, sensor_queue_out, sensors)
+        patrol = Patrol(engine_service, sensors_service)
 
         return patrol
