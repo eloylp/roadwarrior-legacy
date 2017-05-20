@@ -22,3 +22,9 @@ class ServiceThread(Thread):
 
     def stop(self):
         self.flag.clear()
+
+    def get_queue_in(self):
+        return self.queue_in
+
+    def get_queue_out(self):
+        return self.queue_out
