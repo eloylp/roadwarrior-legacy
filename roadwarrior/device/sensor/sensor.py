@@ -1,6 +1,8 @@
 import time
 from RPi import GPIO
 
+from device.sensor.definition import Sensors
+
 
 class UltrasonicSensor:
     def __init__(self, sensor_key, pin_trigger, pin_echo):
@@ -52,3 +54,11 @@ class UltrasonicSensor:
         distance_cm = round((distance_meters * 100), 2)
 
         return distance_cm
+
+
+class UltrasonicSensorBuilder:
+    def get_ultrasonic_sensors(self):
+        return (
+            UltrasonicSensor(Sensors.DISTANCE_FRONT, 23, 24),
+            UltrasonicSensor(Sensors.DISTANCE_BACK, 27, 22)
+        )
