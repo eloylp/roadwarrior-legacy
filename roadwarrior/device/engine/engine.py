@@ -19,3 +19,16 @@ class DCMotor:
 
     def brake(self):
         self.motor.run(Adafruit_MotorHAT.BRAKE)
+
+
+class EngineBuilder:
+    def __init__(self, hat_addr=0x60):
+        self.motor_hat = Adafruit_MotorHAT(addr=hat_addr)
+
+    def get_engines(self):
+        return (
+            DCMotor(self.motor_hat, 1),
+            DCMotor(self.motor_hat, 2),
+            DCMotor(self.motor_hat, 3),
+            DCMotor(self.motor_hat, 4)
+        )
