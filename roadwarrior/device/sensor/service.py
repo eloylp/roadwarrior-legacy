@@ -7,8 +7,11 @@ class UltrasonicSensorService(ServiceThread):
         self.sensors = sensors
 
     def process(self):
+        sensor_snapshot = []
         for sensor in self.sensors:
-            self.queue_out.put((sensor.SENSOR_KEY, sensor.make_measurement()))
+            sensor_snapshot.append((sensor.SENSOR_KEY, sensor.make_measurement()))
+
+        self.queue_out.put(sensor_snapshot)
 
 
 """

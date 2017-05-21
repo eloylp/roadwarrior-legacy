@@ -5,7 +5,7 @@ from pydoc import locate
 class RoadWarrior:
     def run(self):
         try:
-            builder = locate('.'.join(['builders',
+            builder = locate('.'.join(['builder',
                                        str(sys.argv[1]).lower(),
                                        str(sys.argv[1]).lower().capitalize() + 'Builder'
                                        ]))()

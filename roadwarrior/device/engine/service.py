@@ -1,3 +1,5 @@
+from Queue import Empty
+
 from roadwarrior.device.base import ServiceThread
 
 
@@ -9,13 +11,18 @@ class EngineService(ServiceThread):
 
     def process(self):
 
-        command = self.queue_in.get(False)
+        try:
 
-        if command == "FORWARD":
-            for motor in self.motors:
-                motor.set_speed(100)
-                motor.advance_forward()
+            command = self.queue_in.get(False)
 
-        if command == "STOP":
-            for motor in self.motors:
-                motor.brake()
+            if command == "FORWARD":
+                for motor in self.motors:
+                    motor.set_speed(30)
+                    motor.advance_forward()
+
+            if command == "STOP":
+                for motor in self.motors:
+                    motor.brake()
+                    motor.release()
+        except Empty:
+            pass

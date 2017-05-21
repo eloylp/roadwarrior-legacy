@@ -28,3 +28,6 @@ class ServiceThread(Thread):
 
     def get_queue_out(self):
         return self.queue_out
+
+    def get_flag(self):
+        return self.flag
