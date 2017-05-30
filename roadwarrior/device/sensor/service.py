@@ -2,8 +2,8 @@ from roadwarrior.device.base import ServiceThread
 
 
 class UltrasonicSensorService(ServiceThread):
-    def __init__(self, flag, queue_out, sensors, freq=0.5):
-        super(UltrasonicSensorService, self).__init__(flag, False, queue_out, freq)
+    def __init__(self, flag, queue_out, sensors):
+        super(UltrasonicSensorService, self).__init__(flag, False, queue_out)
         self.sensors = sensors
 
     def process(self):

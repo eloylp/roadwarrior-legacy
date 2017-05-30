@@ -4,9 +4,9 @@ from roadwarrior.device.base import ServiceThread
 
 
 class EngineService(ServiceThread):
-    def __init__(self, flag, queue_in, motors, freq=0.5):
+    def __init__(self, flag, queue_in, motors):
 
-        super(EngineService, self).__init__(flag, queue_in, False, freq)
+        super(EngineService, self).__init__(flag, queue_in, False)
         self.motors = motors
 
     def process(self):
@@ -17,7 +17,7 @@ class EngineService(ServiceThread):
 
             if command == "FORWARD":
                 for motor in self.motors:
-                    motor.set_speed(30)
+                    motor.set_speed(50)
                     motor.advance_forward()
 
             if command == "STOP":

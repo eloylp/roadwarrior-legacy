@@ -1,4 +1,3 @@
-from Queue import Empty
 
 import time
 
@@ -26,17 +25,13 @@ class Patrol:
 
             try:
 
-                sensors_snapshot = self.sensors_queue.get(False)
+                sensors_snapshot = self.sensors_queue.get(True)
                 print sensors_snapshot
                 if sensors_snapshot[0][1] > 30:
                     self.engine_queue.put("FORWARD")
                 else:
                     self.engine_queue.put("STOP")
 
-                time.sleep(0.8)
-
-            except Empty:
-                pass
             except KeyboardInterrupt:
                 self.engine_queue.put("STOP")
                 time.sleep(2)

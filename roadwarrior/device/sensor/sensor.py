@@ -59,6 +59,7 @@ class UltrasonicSensor:
 class UltrasonicSensorBuilder:
     def get_ultrasonic_sensors(self):
         return (
-            UltrasonicSensor(Sensors.DISTANCE_FRONT, 23, 24),
-            UltrasonicSensor(Sensors.DISTANCE_BACK, 27, 22)
+            UltrasonicSensor(Sensors.DISTANCE_FRONT_LEFT, 27, 22),
+            UltrasonicSensor(Sensors.DISTANCE_FRONT_FRONT, 23, 24),
+            UltrasonicSensor(Sensors.DISTANCE_FRONT_RIGHT, 20, 21)
         )

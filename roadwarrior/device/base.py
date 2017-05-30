@@ -4,7 +4,7 @@ import time
 
 
 class ServiceThread(Thread):
-    def __init__(self, flag, queue_in, queue_out, freq=0.5):
+    def __init__(self, flag, queue_in, queue_out, freq=0.1):
         super(ServiceThread, self).__init__()
         self.flag = flag
         self.flag.set()
