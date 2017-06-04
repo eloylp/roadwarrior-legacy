@@ -26,11 +26,12 @@ class Patrol:
             try:
 
                 sensors_snapshot = self.sensors_queue.get(True)
-                print sensors_snapshot
-                if sensors_snapshot[0][1] > 30:
+                print sensors_snapshot.__dict__
+
+                """if sensors_snapshot > 30:
                     self.engine_queue.put("FORWARD")
                 else:
-                    self.engine_queue.put("STOP")
+                    self.engine_queue.put("STOP")"""
 
             except KeyboardInterrupt:
                 self.engine_queue.put("STOP")

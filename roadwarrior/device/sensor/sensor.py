@@ -56,10 +56,29 @@ class UltrasonicSensor:
         return distance_cm
 
 
+class UltrasonicSensorSnapshot:
+    def __init__(self):
+        self.front_left = False
+        self.front_front = False
+        self.front_right = False
+        self.right = False
+        self.rear_right = False
+        self.rear_rear = False
+        self.rear_left = False
+        self.left = False
+
+    def addMeasurementFromSensor(self, sensor):
+
+        for position in self.__dict__:
+            sensor_key = sensor.SENSOR_KEY.lower()
+            if position == sensor_key:
+                setattr(self, position, sensor.make_measurement())
+
+
 class UltrasonicSensorBuilder:
     def get_ultrasonic_sensors(self):
         return (
-            UltrasonicSensor(Sensors.DISTANCE_FRONT_LEFT, 27, 22),
-            UltrasonicSensor(Sensors.DISTANCE_FRONT_FRONT, 23, 24),
-            UltrasonicSensor(Sensors.DISTANCE_FRONT_RIGHT, 20, 21)
+            UltrasonicSensor(Sensors.FRONT_LEFT, 27, 22),
+            UltrasonicSensor(Sensors.FRONT_FRONT, 23, 24),
+            UltrasonicSensor(Sensors.FRONT_RIGHT, 20, 21)
         )
