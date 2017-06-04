@@ -19,12 +19,12 @@ class TestUltrasonicSensorSnapshot(TestCase):
 
         return sensors
 
-    def test_addMeasurementFromSensor(self):
+    def test_add_measurement_from_sensor(self):
         sensor_snapshot = UltrasonicSensorSnapshot()
         test_sensors = self.get_test_sensors()
 
         for sensor in test_sensors:
-            sensor_snapshot.addMeasurementFromSensor(sensor)
+            sensor_snapshot.add_Measurement_from_sensor(sensor)
         number_of_sensors = 0
         for sensor_name in sensor_snapshot.__dict__:
             if not sensor_name.startswith('__'):
