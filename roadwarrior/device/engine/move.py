@@ -2,9 +2,20 @@ import time
 
 
 class Descriptor:
+    STOP = "STOP"
     FORWARD = "FORWARD"
     BACKWARD = "BACKWARD"
     TURN = "TURN"
+
+
+class AllStop:
+    def __init__(self, motors):
+        self.motors = motors
+
+    def execute(self):
+        for m in self.motors:
+            m.brake()
+            m.release()
 
 
 class AllForwardMove:
