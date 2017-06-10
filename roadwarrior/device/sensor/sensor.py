@@ -67,7 +67,7 @@ class UltrasonicSensorSnapshot:
         self.rear_left = False
         self.left = False
 
-    def add_Measurement_from_sensor(self, sensor):
+    def add_measurement_from_sensor(self, sensor):
 
         for position in self.__dict__:
             sensor_key = sensor.SENSOR_KEY.lower()

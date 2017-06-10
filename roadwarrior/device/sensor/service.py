@@ -10,6 +10,6 @@ class UltrasonicSensorService(ServiceThread):
     def process(self):
         sensor_snapshot = UltrasonicSensorSnapshot()
         for sensor in self.sensors:
-            sensor_snapshot.add_Measurement_from_sensor(sensor)
+            sensor_snapshot.add_measurement_from_sensor(sensor)
 
         self.queue_out.put(sensor_snapshot)

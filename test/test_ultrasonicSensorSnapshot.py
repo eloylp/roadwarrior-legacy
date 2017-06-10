@@ -24,7 +24,7 @@ class TestUltrasonicSensorSnapshot(TestCase):
         test_sensors = self.get_test_sensors()
 
         for sensor in test_sensors:
-            sensor_snapshot.add_Measurement_from_sensor(sensor)
+            sensor_snapshot.add_measurement_from_sensor(sensor)
         number_of_sensors = 0
         for sensor_name in sensor_snapshot.__dict__:
             if not sensor_name.startswith('__'):
