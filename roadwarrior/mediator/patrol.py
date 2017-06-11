@@ -30,8 +30,8 @@ class Patrol:
                 sensors_snapshot = self.sensors_queue.get(True)
                 print sensors_snapshot.__dict__
 
-                front_sensor_medium = (sensors_snapshot.front_right + sensors_snapshot.front_front + sensors_snapshot)/3
-
+                front_sensor_medium = (sensors_snapshot.front_right + sensors_snapshot.front_front + sensors_snapshot.front_left)/3
+                print front_sensor_medium
                 if front_sensor_medium > 30:
                     self.engine_queue.put((Descriptor.FORWARD, (45)))
                 else:
