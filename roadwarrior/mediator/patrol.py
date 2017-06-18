@@ -1,4 +1,3 @@
-
 import time
 
 from device.engine.move import Descriptor
@@ -23,19 +22,20 @@ class Patrol:
 
     def run(self):
 
+        self.engine_queue.put((Descriptor.FORWARD, (30,)))
+
         while self.running:
-
             try:
-
                 sensors_snapshot = self.sensors_queue.get(True)
-                print sensors_snapshot.__dict__
 
-                front_sensor_medium = (sensors_snapshot.front_right + sensors_snapshot.front_front + sensors_snapshot.front_left)/3
-                print front_sensor_medium
-                if front_sensor_medium > 30:
-                    self.engine_queue.put((Descriptor.FORWARD, (45)))
-                else:
-                    self.engine_queue.put((Descriptor.STOP, ()))
+                for k, v in sensors_snapshot.__dict__.items():
+                    if v is not False and v < 20:
+                        print v
+                        self.engine_queue.put((Descriptor.TURN, (60, 45)))
+                        time.sleep(2)
+                        self.engine_queue.put((Descriptor.FORWARD, (30,)))
+                        self.sensors_queue.queue.clear()
+                        break
 
             except KeyboardInterrupt:
                 self.engine_queue.put((Descriptor.STOP, ()))

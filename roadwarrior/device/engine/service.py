@@ -16,6 +16,8 @@ class EngineService(ServiceThread):
 
             command = self.queue_in.get(False)
 
+            print command
+
             if command[0] in Descriptor.__dict__.keys():
                 self.move[command[0]].execute(*command[1])
         except Empty:

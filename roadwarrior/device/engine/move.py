@@ -8,7 +8,7 @@ class Descriptor:
     TURN = "TURN"
 
 
-class AllStop:
+class AllStopMove:
     def __init__(self, motors):
         self.motors = motors
 
@@ -38,16 +38,23 @@ class AllBackwardMove:
             m.advance_backward()
 
 
-class TurnDegreeesMove:
+class TurnDegreesMove:
     def __init__(self, motors):
         self.motors = motors
-
+    # Todo, need to do calcs here. checking the motor by motor key not by modulus.
     def execute(self, speed, degrees):
+        count = 1
         for m in self.motors:
             m.brake()
             m.release()
             m.set_speed(speed)
-        time.sleep(0.3 * degrees)
+            if count % 2 == 0:
+                m.advance_backward()
+            else:
+                m.advance_forward()
+            count += 1
+
+        time.sleep(1)
         for m in self.motors:
             m.brake()
             m.release()

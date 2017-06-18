@@ -2,7 +2,7 @@ from Queue import Queue
 from threading import Event
 
 from device.engine.engine import EngineBuilder
-from device.engine.move import AllForwardMove, AllBackwardMove, TurnDegreeesMove, Descriptor
+from device.engine.move import AllForwardMove, AllBackwardMove, TurnDegreeesMove, Descriptor, AllStopMove
 from device.sensor.sensor import UltrasonicSensorBuilder
 from roadwarrior.device.engine.service import EngineService
 from roadwarrior.device.sensor.service import UltrasonicSensorService
@@ -24,7 +24,8 @@ class PatrolBuilder:
                                        {
                                            Descriptor.FORWARD: AllForwardMove(motors),
                                            Descriptor.BACKWARD: AllBackwardMove(motors),
-                                           Descriptor.TURN: TurnDegreeesMove(motors)
+                                           Descriptor.TURN: TurnDegreeesMove(motors),
+                                           Descriptor.STOP: AllStopMove(motors)
 
                                        })
         sensors_service = UltrasonicSensorService(sensor_flag, sensor_queue_out, sensors)
