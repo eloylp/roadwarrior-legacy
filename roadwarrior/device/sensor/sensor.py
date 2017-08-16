@@ -4,7 +4,7 @@ from RPi import GPIO
 from device.sensor.definition import Sensors
 
 
-class UltrasonicSensor:
+class UltrasonicSensor(object):
     def __init__(self, sensor_key, pin_trigger, pin_echo):
 
         self.SENSOR_KEY = sensor_key
@@ -56,7 +56,7 @@ class UltrasonicSensor:
         return distance_cm
 
 
-class UltrasonicSensorSnapshot:
+class UltrasonicSensorSnapshot(object):
     def __init__(self):
         self.front_left = False
         self.front_front = False
@@ -75,7 +75,7 @@ class UltrasonicSensorSnapshot:
                 setattr(self, position, sensor.make_measurement())
 
 
-class UltrasonicSensorBuilder:
+class UltrasonicSensorBuilder(object):
     @staticmethod
     def get_ultrasonic_sensors():
         return (

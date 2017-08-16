@@ -1,34 +1,31 @@
-from Queue import Queue
-from threading import Event
+# coding=utf-8
 
 from device.engine.engine import EngineBuilder
-from device.engine.move import AllForwardMove, AllBackwardMove, TurnDegreeesMove, Descriptor, AllStopMove
+from device.engine.move import AllForwardMove, AllBackwardMove, Descriptor, AllStopMove, TurnDegreesMove
 from device.sensor.sensor import UltrasonicSensorBuilder
 from roadwarrior.device.engine.service import EngineService
 from roadwarrior.device.sensor.service import UltrasonicSensorService
 from roadwarrior.mediator.patrol import Patrol
 
 
-class PatrolBuilder:
-    def build(self):
-        engine_flag = Event()
-        engine_command_queue = Queue()
+class PatrolBuilder(object):
+    def __init__(self):
+        pass
 
-        sensor_flag = Event()
-        sensor_queue_out = Queue()
-
+    @staticmethod
+    def build():
         motors = EngineBuilder().get_engines()
         sensors = UltrasonicSensorBuilder().get_ultrasonic_sensors()
 
-        engine_service = EngineService(engine_flag, engine_command_queue,
-                                       {
-                                           Descriptor.FORWARD: AllForwardMove(motors),
-                                           Descriptor.BACKWARD: AllBackwardMove(motors),
-                                           Descriptor.TURN: TurnDegreeesMove(motors),
-                                           Descriptor.STOP: AllStopMove(motors)
+        engine_service = EngineService(
+            {
+                Descriptor.FORWARD: AllForwardMove(motors),
+                Descriptor.BACKWARD: AllBackwardMove(motors),
+                Descriptor.TURN: TurnDegreesMove(motors),
+                Descriptor.STOP: AllStopMove(motors)
 
-                                       })
-        sensors_service = UltrasonicSensorService(sensor_flag, sensor_queue_out, sensors)
+            })
+        sensors_service = UltrasonicSensorService(sensors)
         patrol = Patrol(engine_service, sensors_service)
 
         return patrol

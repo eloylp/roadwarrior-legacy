@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import time
 
 
@@ -8,7 +10,7 @@ class Descriptor:
     TURN = "TURN"
 
 
-class AllStopMove:
+class AllStopMove(object):
     def __init__(self, motors):
         self.motors = motors
 
@@ -18,7 +20,7 @@ class AllStopMove:
             m.release()
 
 
-class AllForwardMove:
+class AllForwardMove(object):
     def __init__(self, motors):
         self.motors = motors
 
@@ -28,7 +30,7 @@ class AllForwardMove:
             m.advance_forward()
 
 
-class AllBackwardMove:
+class AllBackwardMove(object):
     def __init__(self, motors):
         self.motors = motors
 
@@ -38,9 +40,10 @@ class AllBackwardMove:
             m.advance_backward()
 
 
-class TurnDegreesMove:
+class TurnDegreesMove(object):
     def __init__(self, motors):
         self.motors = motors
+
     # Todo, need to do calcs here. checking the motor by motor key not by modulus.
     def execute(self, speed, degrees):
         count = 1
