@@ -1,0 +1,14 @@
+[
+  {
+    "sensors": {
+      "front_left": 23,
+      "front_front": 12,
+      "front_right": 12
+    },
+    "expected_movements": {
+
+      "AllForwardMove" : [23]
+
+    }
+  }
+]

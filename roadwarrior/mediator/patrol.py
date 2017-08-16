@@ -1,32 +1,41 @@
 # coding=utf-8
 
 from __future__ import print_function
-import time
+
+from roadwarrior.device.engine.move import AllForwardMove
 
 
 class Patrol(object):
-    def __init__(self, engine_service, sensors_service):
+    def __init__(self, sensors_service, engine_service):
 
         """
-        :type engine_service: roadwarrior.device.engine.service.EngineService
         :type sensors_service: roadwarrior.device.sensor.service.UltrasonicSensorService
+        :type engine_service: roadwarrior.device.engine.service.EngineService
         """
-        self.engine_service = engine_service
         self.sensors_service = sensors_service
 
+        self.engine_service = engine_service
+
         self.running = True
+
+    def start(self):
+
+        self.running = True
+        self.run()
+
+    def stop(self):
+        self.running = False
+
+    def make_step(self):
+        for sensor, measurement in self.sensors_service.process().__dict__.items():
+            pass
+
+        self.engine_service.process((AllForwardMove.__name__, 23))
 
     def run(self):
 
         while self.running:
             try:
-
-                for k, v in self.sensors_service.process().__dict__.items():
-                    if v is not False and v < 20:
-                        print(v)
-                        time.sleep(2)
-                        break
-
+                self.make_step()
             except KeyboardInterrupt:
-                time.sleep(2)
                 self.running = False
