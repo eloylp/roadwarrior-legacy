@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from device.base import ServiceThread
+from roadwarrior.device.base import ServiceThread
 
 
 class CommunicationsService(ServiceThread):

@@ -1,4 +1,4 @@
-from device.sensor.sensor import UltrasonicSensorSnapshot
+from roadwarrior.device.sensor.sensor import UltrasonicSensorSnapshot
 
 
 class UltrasonicSensorService(object):

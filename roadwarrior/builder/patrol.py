@@ -1,8 +1,8 @@
 # coding=utf-8
 
-from device.engine.engine import EngineBuilder
-from device.engine.move import AllForwardMove, AllBackwardMove, Descriptor, AllStopMove, TurnDegreesMove
-from device.sensor.sensor import UltrasonicSensorBuilder
+from roadwarrior.device.engine.engine import EngineBuilder
+from roadwarrior.device.engine.move import AllForwardMove, AllBackwardMove, Descriptor, AllStopMove, TurnDegreesMove
+from roadwarrior.device.sensor.sensor import UltrasonicSensorBuilder
 from roadwarrior.device.engine.service import EngineService
 from roadwarrior.device.sensor.service import UltrasonicSensorService
 from roadwarrior.mediator.patrol import Patrol

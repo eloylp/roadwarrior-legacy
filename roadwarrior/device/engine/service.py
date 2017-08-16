@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from device.engine.move import Descriptor
+from roadwarrior.device.engine.move import Descriptor
 
 
 class EngineService(object):

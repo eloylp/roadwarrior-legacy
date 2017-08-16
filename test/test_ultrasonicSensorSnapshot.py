@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from mock import MagicMock
 
-from device.sensor.definition import Sensors
-from device.sensor.sensor import UltrasonicSensorSnapshot
+from roadwarrior.device.sensor.definition import Sensors
+from roadwarrior.device.sensor.sensor import UltrasonicSensorSnapshot
 
 
 class TestUltrasonicSensorSnapshot(TestCase):

@@ -1,7 +1,7 @@
 import time
 from RPi import GPIO
 
-from device.sensor.definition import Sensors
+from roadwarrior.device.sensor.definition import Sensors
 
 
 class UltrasonicSensor(object):

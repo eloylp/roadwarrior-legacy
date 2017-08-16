@@ -4,6 +4,9 @@ import time
 
 
 class Descriptor:
+    def __init__(self):
+        pass
+
     STOP = "STOP"
     FORWARD = "FORWARD"
     BACKWARD = "BACKWARD"
