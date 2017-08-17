@@ -1,14 +1,38 @@
 [
   {
     "sensors": {
-      "front_left": 23,
-      "front_front": 12,
-      "front_right": 12
+      "front_left": 80,
+      "front_front": 80,
+      "front_right": 80
     },
-    "expected_movements": {
-
-      "AllForwardMove" : [23]
-
-    }
+    "expected_movements": [
+      [
+        "AllForwardMove",
+        [
+          23
+        ]
+      ]
+    ]
+  },
+  {
+    "sensors": {
+      "front_left": 10,
+      "front_front": 10,
+      "front_right": 10
+    },
+    "expected_movements": [
+      [
+        "AllStopMove"
+      ],
+      [
+        "TurnDegreesMove"
+      ],
+      [
+        "AllForwardMove",
+        [
+          23
+        ]
+      ]
+    ]
   }
 ]

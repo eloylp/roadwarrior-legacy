@@ -24,8 +24,7 @@ class UltrasonicSensorSnapshot(object):
         self.left = False
 
     def add_measurement_from_sensor(self, sensor):
-
+        sensor_key = sensor.SENSOR_KEY.lower()
         for position in self.__dict__:
-            sensor_key = sensor.SENSOR_KEY.lower()
             if position == sensor_key:
                 setattr(self, position, sensor.make_measurement())

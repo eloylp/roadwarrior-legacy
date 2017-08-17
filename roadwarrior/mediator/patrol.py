@@ -2,7 +2,8 @@
 
 from __future__ import print_function
 
-from roadwarrior.device.engine.move import AllForwardMove
+from device.sensor.definition import Sensors
+from roadwarrior.device.engine.move import AllForwardMove, AllStopMove, TurnDegreesMove
 
 
 class Patrol(object):
@@ -27,10 +28,17 @@ class Patrol(object):
         self.running = False
 
     def make_step(self):
+        average = 0
+        count = 0
         for sensor, measurement in self.sensors_service.process().__dict__.items():
-            pass
-
-        self.engine_service.process((AllForwardMove.__name__, 23))
+            if sensor.upper() in [Sensors.FRONT_FRONT, Sensors.FRONT_LEFT, Sensors.FRONT_RIGHT]:
+                average += measurement
+                count += 1
+        if count:
+            if average / count <= 10:
+                self.engine_service.process((AllStopMove.__name__,))
+                self.engine_service.process((TurnDegreesMove.__name__,))
+        self.engine_service.process((AllForwardMove.__name__, (23,)))
 
     def run(self):
 

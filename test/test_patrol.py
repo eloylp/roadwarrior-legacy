@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from ddt import ddt, file_data
-from mock import Mock
+from mock import Mock, mock
 
 from roadwarrior.device.sensor.service import UltrasonicSensorService
 from roadwarrior.mediator.patrol import Patrol
@@ -16,7 +16,7 @@ class TestPatrol(TestCase):
         for sensor, measure in sensors.items():
             sensor_mock = Mock()
             sensor_mock.make_measurement.return_value = measure
-            sensor_mock.SENSOR_KEY.return_value = sensor.upper()
+            sensor_mock.SENSOR_KEY = sensor.upper()
             mocked_sensors.append(sensor_mock)
 
         sensor_service = UltrasonicSensorService(mocked_sensors)
@@ -24,5 +24,17 @@ class TestPatrol(TestCase):
         sut = Patrol(sensor_service, engine_mock)
         sut.make_step()
 
-        for movement, args in expected_movements.items():
-            engine_mock.process.assert_called_once_with(movement, args)
+        calls = []
+        for movement in expected_movements:
+            function = getattr(mock.call, 'process')
+            input_length = len(movement)
+            if input_length is 1:
+                call = function(tuple(movement))
+            elif input_length is 2:
+                composition = (movement[0], tuple(movement[1]))
+                call = function(composition)
+            else:
+                raise Exception('Bad test case format.')
+            calls.append(call)
+
+        engine_mock.assert_has_calls(calls, False)

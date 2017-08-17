@@ -3,7 +3,7 @@
 import time
 
 
-class Descriptor:
+class Descriptor(object):
     def __init__(self):
         pass
 
