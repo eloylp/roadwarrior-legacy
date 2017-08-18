@@ -9,7 +9,7 @@ from roadwarrior.mediator.patrol import Patrol
 
 @ddt
 class TestPatrol(TestCase):
-    @file_data('patrol.json')
+    @file_data('patrol_test_cases.json')
     def test_run(self, sensors, expected_movements):
         mocked_sensors = []
 

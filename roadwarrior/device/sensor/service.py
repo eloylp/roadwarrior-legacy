@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from roadwarrior.device.sensor.definition import UltrasonicSensorSnapshot
 
 

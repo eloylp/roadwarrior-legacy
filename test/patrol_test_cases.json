@@ -9,7 +9,7 @@
       [
         "AllForwardMove",
         [
-          23
+          30
         ]
       ]
     ]
@@ -30,7 +30,22 @@
       [
         "AllForwardMove",
         [
-          23
+          30
+        ]
+      ]
+    ]
+  },
+  {
+    "sensors": {
+      "front_left": 10,
+      "front_front": 10,
+      "front_right": 14
+    },
+    "expected_movements": [
+      [
+        "AllForwardMove",
+        [
+          30
         ]
       ]
     ]

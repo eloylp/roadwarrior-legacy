@@ -3,16 +3,6 @@
 import time
 
 
-class Descriptor(object):
-    def __init__(self):
-        pass
-
-    STOP = "STOP"
-    FORWARD = "FORWARD"
-    BACKWARD = "BACKWARD"
-    TURN = "TURN"
-
-
 class AllStopMove(object):
     def __init__(self, motors):
         self.motors = motors

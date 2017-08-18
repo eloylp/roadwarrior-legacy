@@ -16,7 +16,7 @@ class RoadWarrior(object):
                                        str(sys.argv[1]).lower().capitalize() + 'Builder'
                                        ]))
             mediator = builder.build()
-            mediator.run()
+            mediator.start()
         except (IndexError, TypeError):
             print("Program identity not valid.")
 

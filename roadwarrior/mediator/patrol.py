@@ -14,9 +14,7 @@ class Patrol(object):
         :type engine_service: roadwarrior.device.engine.service.EngineService
         """
         self.sensors_service = sensors_service
-
         self.engine_service = engine_service
-
         self.running = True
 
     def start(self):
@@ -27,19 +25,6 @@ class Patrol(object):
     def stop(self):
         self.running = False
 
-    def make_step(self):
-        average = 0
-        count = 0
-        for sensor, measurement in self.sensors_service.process().__dict__.items():
-            if sensor.upper() in [Sensors.FRONT_FRONT, Sensors.FRONT_LEFT, Sensors.FRONT_RIGHT]:
-                average += measurement
-                count += 1
-        if count:
-            if average / count <= 10:
-                self.engine_service.process((AllStopMove.__name__,))
-                self.engine_service.process((TurnDegreesMove.__name__,))
-        self.engine_service.process((AllForwardMove.__name__, (23,)))
-
     def run(self):
 
         while self.running:
@@ -47,3 +32,16 @@ class Patrol(object):
                 self.make_step()
             except KeyboardInterrupt:
                 self.running = False
+
+    def make_step(self):
+        total_front_sensors = 0
+        count = 0
+        for sensor, measurement in self.sensors_service.process().__dict__.items():
+            if sensor.upper() in [Sensors.FRONT_FRONT, Sensors.FRONT_LEFT, Sensors.FRONT_RIGHT]:
+                total_front_sensors += measurement
+                count += 1
+        if count:
+            if total_front_sensors / count <= 10:
+                self.engine_service.process((AllStopMove.__name__,))
+                self.engine_service.process((TurnDegreesMove.__name__,))
+        self.engine_service.process((AllForwardMove.__name__, (30,)))
