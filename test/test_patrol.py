@@ -24,6 +24,9 @@ class TestPatrol(TestCase):
         sut = Patrol(sensor_service, engine_mock)
         sut.make_step()
 
+        self.assertEqual(len(expected_movements), len(engine_mock.method_calls),
+                         "Different call count expected.")
+
         calls = []
         for movement in expected_movements:
             function = getattr(mock.call, 'process')
