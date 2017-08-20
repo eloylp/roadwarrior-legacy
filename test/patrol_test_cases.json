@@ -1,5 +1,4 @@
 [
-
   {
     "sensors": {
       "front_left": 80,
@@ -10,7 +9,7 @@
       [
         "AllForwardMove",
         [
-          30
+          60
         ]
       ]
     ]
@@ -26,12 +25,15 @@
         "AllStopMove"
       ],
       [
-        "TurnDegreesMove"
+        "TurnDegreesMove",
+        [
+          60
+        ]
       ],
       [
         "AllForwardMove",
         [
-          30
+          60
         ]
       ]
     ]
@@ -46,7 +48,7 @@
       [
         "AllForwardMove",
         [
-          30
+          60
         ]
       ]
     ]

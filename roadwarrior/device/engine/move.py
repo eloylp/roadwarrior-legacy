@@ -38,7 +38,7 @@ class TurnDegreesMove(object):
         self.motors = motors
 
     # Todo, need to do calcs here. checking the motor by motor key not by modulus.
-    def execute(self, speed, degrees):
+    def execute(self, speed):
         count = 1
         for m in self.motors:
             m.brake()

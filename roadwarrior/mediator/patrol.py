@@ -43,5 +43,5 @@ class Patrol(object):
         if count:
             if total_front_sensors / count <= 10:
                 self.engine_service.process((AllStopMove.__name__,))
-                self.engine_service.process((TurnDegreesMove.__name__,))
-        self.engine_service.process((AllForwardMove.__name__, (30,)))
+                self.engine_service.process((TurnDegreesMove.__name__, (60,)))
+        self.engine_service.process((AllForwardMove.__name__, (60,)))
