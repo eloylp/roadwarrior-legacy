@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from unittest import TestCase
 
 from ddt import ddt, file_data
