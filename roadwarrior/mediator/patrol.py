@@ -27,11 +27,14 @@ class Patrol(object):
 
     def run(self):
 
+        self.engine_service.process((AllStopMove.__name__,))
+
         while self.running:
             try:
                 self.make_step()
             except KeyboardInterrupt:
                 self.running = False
+        self.engine_service.process((AllStopMove.__name__,))
 
     def make_step(self):
         total_front_sensors = 0

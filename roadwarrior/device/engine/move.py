@@ -50,7 +50,7 @@ class TurnDegreesMove(object):
                 m.advance_forward()
             count += 1
 
-        time.sleep(1)
+        time.sleep(2)
         for m in self.motors:
             m.brake()
             m.release()
