@@ -6,7 +6,7 @@ class EngineService(object):
 
     def process(self, command):
         if command[0] in self.move.keys():
-            if len(command) == 2:
+            if len(command) is 2:
                 self.move[command[0]].execute(*command[1])
             else:
                 self.move[command[0]].execute()
