@@ -22,11 +22,11 @@ class TestPatrol(TestCase):
             mocked_sensors.append(sensor_mock)
 
         sensor_service = UltrasonicSensorService(mocked_sensors)
-        engine_mock = Mock()
-        sut = Patrol(sensor_service, engine_mock)
+        engine_service_mock = Mock()
+        sut = Patrol(sensor_service, engine_service_mock)
         sut.make_step()
 
-        self.assertEqual(len(expected_movements), len(engine_mock.method_calls),
+        self.assertEqual(len(expected_movements), len(engine_service_mock.method_calls),
                          "Different call count expected.")
 
         calls = []
@@ -42,4 +42,4 @@ class TestPatrol(TestCase):
                 raise Exception('Bad test case format.')
             calls.append(call)
 
-        engine_mock.assert_has_calls(calls, False)
+        engine_service_mock.assert_has_calls(calls, False)
