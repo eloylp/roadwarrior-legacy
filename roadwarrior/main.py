@@ -11,9 +11,9 @@ class RoadWarrior(object):
 
     def run(self):
         try:
-            builder = locate('.'.join(['builder',
+            builder = locate('.'.join(['factory',
                                        str(sys.argv[1]).lower(),
-                                       str(sys.argv[1]).lower().capitalize() + 'Builder'
+                                       str(sys.argv[1]).lower().capitalize() + 'Factory'
                                        ]))
             mediator = builder.build()
             mediator.start()

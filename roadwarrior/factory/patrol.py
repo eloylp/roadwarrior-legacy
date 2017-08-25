@@ -10,7 +10,7 @@ from roadwarrior.device.sensor.service import SensorService
 from roadwarrior.behaviour.patrol import Patrol
 
 
-class PatrolBuilder(object):
+class PatrolFactory(object):
     def __init__(self):
         pass
 

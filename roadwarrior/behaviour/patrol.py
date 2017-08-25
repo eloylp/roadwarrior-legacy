@@ -39,6 +39,7 @@ class Patrol(object):
     def make_step(self):
         total_front_sensors = 0
         count = 0
+        print(self.sensors_service.process())
         for sensor, measurement in self.sensors_service.process().__dict__.items():
             if sensor.upper() in [Sensors.FRONT_FRONT, Sensors.FRONT_LEFT, Sensors.FRONT_RIGHT]:
                 total_front_sensors += measurement
