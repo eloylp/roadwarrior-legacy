@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 
-from device.sensor.definition import Sensors
+from roadwarrior.device.sensor.definition import Sensors
 from roadwarrior.device.engine.move import AllForwardMove, AllStopMove, TurnDegreesMove
 
 
