@@ -1,3 +1,4 @@
+Adafruit-MotorHAT
+Adafruit-LSM303
 mock
 ddt
-
