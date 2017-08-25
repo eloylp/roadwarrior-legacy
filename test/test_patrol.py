@@ -6,7 +6,7 @@ from ddt import ddt, file_data
 from mock import Mock, mock
 
 from roadwarrior.device.sensor.service import SensorService
-from roadwarrior.mediator.patrol import Patrol
+from roadwarrior.behaviour.patrol import Patrol
 
 
 @ddt

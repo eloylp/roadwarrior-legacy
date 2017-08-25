@@ -62,7 +62,7 @@ class UltrasonicSensor(object):
         return distance_cm
 
 
-class SensorBuilder(object):
+class SensorFactory(object):
     @staticmethod
     def get_sensors():
 
