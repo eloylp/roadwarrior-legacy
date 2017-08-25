@@ -1,5 +1,6 @@
 # coding=utf-8
 
+
 class EngineService(object):
     def __init__(self, move):
         self.move = move
