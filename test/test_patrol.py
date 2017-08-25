@@ -5,7 +5,7 @@ from unittest import TestCase
 from ddt import ddt, file_data
 from mock import Mock, mock
 
-from roadwarrior.device.sensor.service import UltrasonicSensorService
+from roadwarrior.device.sensor.service import SensorService
 from roadwarrior.mediator.patrol import Patrol
 
 
@@ -21,7 +21,7 @@ class TestPatrol(TestCase):
             sensor_mock.SENSOR_KEY = sensor.upper()
             mocked_sensors.append(sensor_mock)
 
-        sensor_service = UltrasonicSensorService(mocked_sensors)
+        sensor_service = SensorService(mocked_sensors)
         engine_service_mock = Mock()
         sut = Patrol(sensor_service, engine_service_mock)
         sut.make_step()

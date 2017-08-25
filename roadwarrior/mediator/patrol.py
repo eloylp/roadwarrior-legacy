@@ -10,7 +10,7 @@ class Patrol(object):
     def __init__(self, sensors_service, engine_service):
 
         """
-        :type sensors_service: roadwarrior.device.sensor.service.UltrasonicSensorService
+        :type sensors_service: roadwarrior.device.sensor.service.SensorService
         :type engine_service: roadwarrior.device.engine.service.EngineService
         """
         self.sensors_service = sensors_service

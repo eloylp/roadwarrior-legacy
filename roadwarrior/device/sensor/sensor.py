@@ -1,4 +1,10 @@
+# coding=utf-8
+
 import time
+
+import Adafruit_LSM303
+from Adafruit_LSM303 import LSM303
+from Adafruit_LSM303.instruments import Compass, Inclinometer
 from RPi import GPIO
 
 from roadwarrior.device.sensor.definition import Sensors
@@ -56,11 +62,55 @@ class UltrasonicSensor(object):
         return distance_cm
 
 
-class UltrasonicSensorBuilder(object):
+class SensorBuilder(object):
     @staticmethod
-    def get_ultrasonic_sensors():
+    def get_sensors():
+
+        instrument_factory = InstrumentsFactory()
         return (
             UltrasonicSensor(Sensors.FRONT_LEFT, 27, 22),
             UltrasonicSensor(Sensors.FRONT_FRONT, 23, 24),
-            UltrasonicSensor(Sensors.FRONT_RIGHT, 20, 21)
+            UltrasonicSensor(Sensors.FRONT_RIGHT, 20, 21),
+            CompassAdapter(Sensors.COMPASS, instrument_factory.get_compass()),
+            InclinometerAdapter(Sensors.INCLINOMETER, instrument_factory.get_inclinometer())
         )
+
+
+class InstrumentsFactory(object):
+    SENSOR = False
+
+    def call_sensor(self):
+        if not self.SENSOR:
+            self.SENSOR = LSM303()
+            self.SENSOR.set_mag_gain(Adafruit_LSM303.LSM303_MAGGAIN_4_7)
+        return self.SENSOR
+
+    def get_inclinometer(self):
+        return Inclinometer(self.call_sensor())
+
+    def get_compass(self):
+        return Compass(self.call_sensor())
+
+
+class InclinometerAdapter(object):
+    def __init__(self, sensor_key, inclinometer):
+        """
+        :type inclinometer: Inclinometer
+        """
+        self.SENSOR_KEY = sensor_key
+        self.inclinometer = inclinometer
+
+    def make_measurement(self):
+        self.inclinometer.get_inclination()
+
+
+class CompassAdapter(object):
+    def __init__(self, sensor_key, compass):
+        """
+        :type compass: Compass
+        """
+        self.SENSOR_KEY = sensor_key
+        self.compass = compass
+
+    def make_measurement(self):
+        return self.compass.get_heading()

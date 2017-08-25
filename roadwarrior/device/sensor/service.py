@@ -1,14 +1,14 @@
 # coding=utf-8
 
-from roadwarrior.device.sensor.definition import UltrasonicSensorSnapshot
+from roadwarrior.device.sensor.definition import SensorSnapshot
 
 
-class UltrasonicSensorService(object):
+class SensorService(object):
     def __init__(self, sensors):
         self.sensors = sensors
 
     def process(self):
-        sensor_snapshot = UltrasonicSensorSnapshot()
+        sensor_snapshot = SensorSnapshot()
         for sensor in self.sensors:
             sensor_snapshot.add_measurement_from_sensor(sensor)
         return sensor_snapshot
