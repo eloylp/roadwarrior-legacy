@@ -101,7 +101,7 @@ class InclinometerAdapter(object):
         self.inclinometer = inclinometer
 
     def make_measurement(self):
-        self.inclinometer.get_inclination()
+        return self.inclinometer.get_inclination()
 
 
 class CompassAdapter(object):
