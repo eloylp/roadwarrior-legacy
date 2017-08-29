@@ -39,7 +39,6 @@ class Patrol(object):
     def make_step(self):
         total_front_sensors = 0
         count = 0
-        print(self.sensors_service.process())
         for sensor, measurement in self.sensors_service.process().__dict__.items():
             if sensor.upper() in [Sensors.FRONT_FRONT, Sensors.FRONT_LEFT, Sensors.FRONT_RIGHT]:
                 total_front_sensors += measurement
@@ -47,5 +46,5 @@ class Patrol(object):
         if count:
             if total_front_sensors / count <= 10:
                 self.engine_service.process((AllStopMove.__name__,))
-                self.engine_service.process((TurnDegreesMove.__name__, (60,)))
+                self.engine_service.process((TurnDegreesMove.__name__, (60, )))
         self.engine_service.process((AllForwardMove.__name__, (60,)))
