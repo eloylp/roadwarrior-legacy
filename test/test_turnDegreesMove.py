@@ -4,6 +4,7 @@ from unittest import TestCase
 
 from mock import Mock
 
+from device.engine.definition import Direction
 from device.engine.move import TurnDegreesMove
 
 
@@ -22,5 +23,10 @@ class TestTurnDegreesMove(TestCase):
 
         self.movement = TurnDegreesMove(self.motors, self.heading_sensor)
 
-    def test_execute(self):
-        pass
+    def test_execute_right(self):
+
+        self.movement.execute(20, Direction.RIGHT)
+
+        self.motor_1
+
+

@@ -34,11 +34,18 @@ class AllBackwardMove(object):
 
 
 class TurnDegreesMove(object):
-    def __init__(self, motors):
+    def __init__(self, motors, heading_sensor):
+        """
+        :type sensor_service: roadwarrior.device.sensor.service.SensorService
+        """
         self.motors = motors
+        self.heading_sensor = heading_sensor
 
     # Todo, need to do calcs here. checking the motor by motor key not by modulus.
-    def execute(self, speed):
+    def execute(self, speed, direction):
+
+        # sensor_service.
+
         count = 1
         for m in self.motors:
             m.brake()

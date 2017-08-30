@@ -23,9 +23,23 @@ class DCMotor(object):
         self.motor.run(Adafruit_MotorHAT.BRAKE)
 
 
+
+class Engine(object):
+
+    def __init__(self, engine_key, motor):
+        """
+        :type engine_key: str
+        :type motor: DCMotor
+        """
+        self.engine_key = engine_key
+        self.motor = motor
+
+
 class EngineBuilder(object):
     def __init__(self, hat_addr=0x60):
         self.motor_hat = Adafruit_MotorHAT(addr=hat_addr)
+
+
 
     def get_engines(self):
         return (
