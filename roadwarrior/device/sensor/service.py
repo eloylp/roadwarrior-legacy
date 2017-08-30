@@ -19,4 +19,3 @@ class SensorService(object):
             if sensor.SENSOR_KEY == sensor_key:
                 return sensor
         raise KeyError
-

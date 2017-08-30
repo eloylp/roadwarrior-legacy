@@ -1,7 +1,9 @@
+# coding=utf-8
+
 from Adafruit_MotorHAT import Adafruit_MotorHAT
 
 
-class DCMotor:
+class DCMotor(object):
     def __init__(self, motor_hat, motor_number):
         self.motor = motor_hat.getMotor(motor_number)
 
@@ -21,7 +23,7 @@ class DCMotor:
         self.motor.run(Adafruit_MotorHAT.BRAKE)
 
 
-class EngineBuilder:
+class EngineBuilder(object):
     def __init__(self, hat_addr=0x60):
         self.motor_hat = Adafruit_MotorHAT(addr=hat_addr)
 
