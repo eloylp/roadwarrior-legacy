@@ -5,7 +5,7 @@ class Direction(object):
     RIGHT = 'RIGHT'
 
 
-class Engine(object):
+class EngineLocation(object):
     FRONT_LEFT = 'FRONT_LEFT'
     FRONT_RIGHT = 'FRONT_RIGHT'
     BACK_LEFT = 'BACK_LEFT'
