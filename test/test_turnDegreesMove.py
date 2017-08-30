@@ -4,8 +4,8 @@ from unittest import TestCase
 
 from mock import Mock
 
-from device.engine.definition import Direction
-from device.engine.move import TurnDegreesMove
+from roadwarrior.device.engine.definition import Direction
+from roadwarrior.device.engine.move import TurnDegreesMove
 
 
 class TestTurnDegreesMove(TestCase):

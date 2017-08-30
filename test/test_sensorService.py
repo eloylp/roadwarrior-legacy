@@ -5,8 +5,8 @@ import math
 
 from mock import Mock
 
-from device.sensor.definition import Sensors
-from device.sensor.service import SensorService
+from roadwarrior.device.sensor.definition import Sensors
+from roadwarrior.device.sensor.service import SensorService
 
 
 class TestSensorService(TestCase):
