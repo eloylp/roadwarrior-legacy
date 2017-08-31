@@ -35,14 +35,14 @@ class Engine(object):
         self.motor = motor
 
 
-class EngineBuilder(object):
+class EngineFactory(object):
     def __init__(self, hat_addr=0x60):
         self.motor_hat = Adafruit_MotorHAT(addr=hat_addr)
 
     def get_engines(self):
         return (
-            Engine(EngineLocation.FRONT_RIGHT, DCMotor(self.motor_hat, 1)),
-            Engine(EngineLocation.FRONT_LEFT, DCMotor(self.motor_hat, 2)),
-            Engine(EngineLocation.BACK_LEFT, DCMotor(self.motor_hat, 3)),
-            Engine(EngineLocation.BACK_RIGHT, DCMotor(self.motor_hat, 4))
+            Engine(EngineLocation.BACK_RIGHT, DCMotor(self.motor_hat, 1)),
+            Engine(EngineLocation.FRONT_RIGHT, DCMotor(self.motor_hat, 2)),
+            Engine(EngineLocation.FRONT_LEFT, DCMotor(self.motor_hat, 3)),
+            Engine(EngineLocation.BACK_LEFT, DCMotor(self.motor_hat, 4))
         )
