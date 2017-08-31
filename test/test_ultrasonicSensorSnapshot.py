@@ -13,7 +13,7 @@ class TestUltrasonicSensorSnapshot(TestCase):
             if not posible_sensor.startswith('__'):
                 sensor = MagicMock()
                 sensor.make_measurement = MagicMock(return_value=100)
-                sensor.SENSOR_KEY = posible_sensor
+                sensor.sensor_key = posible_sensor
                 sensors.append(sensor)
 
         return sensors

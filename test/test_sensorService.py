@@ -22,7 +22,7 @@ class TestSensorService(TestCase):
         sensors = []
         for sensor_key in self.sensors_to_mock:
             mock = Mock()
-            mock.SENSOR_KEY = sensor_key
+            mock.sensor_key = sensor_key
             mock.make_measurement = Mock(return_value=math.pi)
             sensors.append(mock)
 

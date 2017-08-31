@@ -13,7 +13,7 @@ from roadwarrior.device.sensor.definition import Sensors
 class UltrasonicSensor(object):
     def __init__(self, sensor_key, pin_trigger, pin_echo):
 
-        self.SENSOR_KEY = sensor_key
+        self.sensor_key = sensor_key
         self.PIN_TRIG = pin_trigger
         self.PIN_ECHO = pin_echo
         self.setup_sensor()
@@ -97,7 +97,7 @@ class InclinometerAdapter(object):
         """
         :type inclinometer: Inclinometer
         """
-        self.SENSOR_KEY = sensor_key
+        self.sensor_key = sensor_key
         self.inclinometer = inclinometer
 
     def make_measurement(self):
@@ -109,7 +109,7 @@ class CompassAdapter(object):
         """
         :type compass: Compass
         """
-        self.SENSOR_KEY = sensor_key
+        self.sensor_key = sensor_key
         self.compass = compass
 
     def make_measurement(self):

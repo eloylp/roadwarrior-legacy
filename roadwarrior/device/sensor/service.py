@@ -16,6 +16,6 @@ class SensorService(object):
     def get_sensor_by_key(self, sensor_key):
 
         for sensor in self.sensors:
-            if sensor.SENSOR_KEY == sensor_key:
+            if sensor.sensor_key == sensor_key:
                 return sensor
         raise KeyError

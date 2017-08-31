@@ -20,7 +20,7 @@ class SensorSnapshot(object):
         self.inclinometer = False
 
     def add_measurement_from_sensor(self, sensor):
-        sensor_key = sensor.SENSOR_KEY.lower()
+        sensor_key = sensor.sensor_key.lower()
         for position in self.__dict__:
             if position == sensor_key:
                 setattr(self, position, sensor.make_measurement())

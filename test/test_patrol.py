@@ -11,14 +11,14 @@ from roadwarrior.behaviour.patrol import Patrol
 
 @ddt
 class TestPatrol(TestCase):
-    @file_data('patrol_test_cases.json')
+    @file_data('patrol_test_cases.yml')
     def test_run(self, sensors, expected_movements):
         mocked_sensors = []
 
         for sensor, measure in sensors.items():
             sensor_mock = Mock()
             sensor_mock.make_measurement.return_value = measure
-            sensor_mock.SENSOR_KEY = sensor.upper()
+            sensor_mock.sensor_key = sensor.upper()
             mocked_sensors.append(sensor_mock)
 
         sensor_service = SensorService(mocked_sensors)
