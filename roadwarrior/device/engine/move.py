@@ -1,7 +1,8 @@
 # coding=utf-8
 
 
-from device.engine.definition import Direction, EngineLocation
+from device.engine.definition import EngineLocation
+from device.engine.navigation import Direction
 
 
 class AllStopMove(object):

@@ -6,8 +6,8 @@ from ddt import ddt, file_data
 from mock import Mock, mock
 
 from device.engine.engine import Engine
-from device.engine.navigation import TargetHeadingCalculator
-from roadwarrior.device.engine.definition import Direction, EngineLocation
+from device.engine.navigation import TargetHeadingCalculator, Direction
+from roadwarrior.device.engine.definition import EngineLocation
 from roadwarrior.device.engine.move import TurnDegreesMove
 
 

@@ -1,7 +1,5 @@
 # coding=utf-8
 
-from device.engine.definition import Direction
-
 
 class TargetHeadingCalculator(object):
     def __init__(self, precision=1):
@@ -42,3 +40,8 @@ class TargetHeadingCalculator(object):
         if desired_heading_degrees > 360:
             desired_heading_degrees %= 360
         return desired_heading_degrees
+
+
+class Direction(object):
+    LEFT = 'LEFT'
+    RIGHT = 'RIGHT'

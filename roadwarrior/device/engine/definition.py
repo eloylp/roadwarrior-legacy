@@ -1,9 +1,5 @@
 # coding=utf-8
 
-class Direction(object):
-    LEFT = 'LEFT'
-    RIGHT = 'RIGHT'
-
 
 class EngineLocation(object):
     FRONT_LEFT = 'FRONT_LEFT'
