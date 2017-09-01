@@ -1,0 +1,59 @@
+- direction: RIGHT
+  desired_degrees: 20
+  speed: 60
+  start_heading_degrees: 140
+  motor_calls_expectations:
+    motor_back_left:
+    - - set_speed
+      - - 60
+    - - advance_forward
+    - - brake
+    - - release
+    motor_front_left:
+    - - set_speed
+      - - 60
+    - - advance_forward
+    - - brake
+    - - release
+    motor_back_right:
+    - - set_speed
+      - - 60
+    - - advance_backward
+    - - brake
+    - - release
+    motor_front_right:
+    - - set_speed
+      - - 60
+    - - advance_backward
+    - - brake
+    - - release
+
+- direction: LEFT
+  desired_degrees: 60
+  speed: 50
+  start_heading_degrees: 10
+  motor_calls_expectations:
+    motor_back_left:
+    - - set_speed
+      - - 50
+    - - advance_backward
+    - - brake
+    - - release
+    motor_front_left:
+    - - set_speed
+      - - 50
+    - - advance_backward
+    - - brake
+    - - release
+    motor_back_right:
+    - - set_speed
+      - - 50
+    - - advance_forward
+    - - brake
+    - - release
+    motor_front_right:
+    - - set_speed
+      - - 50
+    - - advance_forward
+    - - brake
+    - - release
