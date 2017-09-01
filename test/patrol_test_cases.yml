@@ -12,7 +12,9 @@
   expected_movements:
   - - AllStopMove
   - - TurnDegreesMove
-    - - 60
+    - - "RIGHT"
+      - 90
+      - 50
   - - AllForwardMove
     - - 60
 - sensors:

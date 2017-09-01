@@ -35,7 +35,7 @@ class TestPatrol(TestCase):
             input_length = len(movement)
             if input_length is 1:
                 call = function(tuple(movement))
-            elif input_length is 2:
+            elif input_length >= 2:
                 composition = (movement[0], tuple(movement[1]))
                 call = function(composition)
             else:
