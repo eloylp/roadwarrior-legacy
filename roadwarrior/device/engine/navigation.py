@@ -10,7 +10,7 @@ class TargetHeadingCalculator(object):
 
     def calculate(self, actual_heading_degrees, desired_heading_degrees, direction):
 
-        desired_heading_degrees = self.__reduce_hover_loop(desired_heading_degrees)
+        desired_heading_degrees = self.__reduce_over_loop(desired_heading_degrees)
 
         if direction == Direction.RIGHT:
             result = self.__calculate_to_right(actual_heading_degrees, desired_heading_degrees)
@@ -37,7 +37,7 @@ class TargetHeadingCalculator(object):
 
         return round(value, self.precision)
 
-    def __reduce_hover_loop(self, desired_heading_degrees):
+    def __reduce_over_loop(self, desired_heading_degrees):
 
         if desired_heading_degrees > 360:
             desired_heading_degrees %= 360
