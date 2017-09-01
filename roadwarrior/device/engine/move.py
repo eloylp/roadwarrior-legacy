@@ -36,7 +36,7 @@ class AllBackwardMove(object):
 
 
 class TurnDegreesMove(object):
-    def __init__(self, engines, heading_sensor, heading_target_calculator):
+    def __init__(self, engines, heading_sensor, heading_target_calculator, accuracy_degrees=1):
         """
         :type engines: roadwarrior.device.engine.engine.Engine[]
         :type sensor_service: roadwarrior.device.sensor.service.SensorService
@@ -46,6 +46,7 @@ class TurnDegreesMove(object):
         self.engines = engines
         self.heading_sensor = heading_sensor
         self.heading_target_calculator = heading_target_calculator
+        self.accuracy_degrees = accuracy_degrees
         self.__prepare_engines()
 
     def __prepare_engines(self):
@@ -86,7 +87,7 @@ class TurnDegreesMove(object):
 
         target_degrees = self.heading_target_calculator.calculate(actual_degrees, degrees, direction)
 
-        while self.heading_sensor.make_measurement() != target_degrees:
+        while not self.is_close_to(self.heading_sensor.make_measurement(), target_degrees, self.accuracy_degrees):
             pass
 
         for engine in self.prepared_engines:
@@ -99,3 +100,10 @@ class TurnDegreesMove(object):
             if engine.engine_key is engine_key:
                 return engine
         raise KeyError
+
+    @staticmethod
+    def is_close_to(value, target_value, delta):
+
+        if (target_value - delta) <= value <= (target_value + delta):
+            return True
+        return False

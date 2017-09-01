@@ -2,7 +2,7 @@
 
 from unittest import TestCase
 
-from ddt import ddt, file_data
+from ddt import ddt, file_data, data, unpack
 from mock import Mock, mock
 
 from device.engine.engine import Engine
@@ -70,8 +70,9 @@ class TestTurnDegreesMove(TestCase):
 
         self.sut.execute(direction, desired_degrees, speed)
 
-        self.assertEqual(self.target_heading_calculator.calculate(self.initial_heading, desired_degrees, direction),
-                         self.actual_heading)
+        target_heading = self.target_heading_calculator.calculate(self.initial_heading, desired_degrees, direction)
+        self.assertTrue(self.sut.is_close_to(self.actual_heading, target_heading, self.sut.accuracy_degrees))
+
         for motor, call_data in motor_calls_expectations.items():
             calls = []
             for function_call_data in call_data:
@@ -89,3 +90,15 @@ class TestTurnDegreesMove(TestCase):
             motor_mock = getattr(self, motor)
             motor_mock.assert_has_calls(calls, False)
 
+    @data(
+        (20, 21, 1, True),
+        (19.99999, 21, 1, False),
+        (20.99999, 21, 1, True),
+    )
+    @unpack
+    def test_is_closed_to(self, value, target_value, delta, expected_result):
+        result = self.sut.is_close_to(value, target_value, delta)
+        if expected_result:
+            self.assertTrue(result)
+        else:
+            self.assertFalse(result)
