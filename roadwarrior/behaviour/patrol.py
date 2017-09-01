@@ -2,7 +2,8 @@
 
 from __future__ import print_function
 
-from roadwarrior.device.sensor.definition import Sensors
+from device.engine.navigation import Direction
+from device.sensor.definition import Sensors
 from roadwarrior.device.engine.move import AllForwardMove, AllStopMove, TurnDegreesMove
 
 
@@ -46,5 +47,5 @@ class Patrol(object):
         if count:
             if total_front_sensors / count <= 10:
                 self.engine_service.process((AllStopMove.__name__,))
-                self.engine_service.process((TurnDegreesMove.__name__, (60, )))
+                self.engine_service.process((TurnDegreesMove.__name__, (Direction.RIGHT, 90, 50)))
         self.engine_service.process((AllForwardMove.__name__, (60,)))
