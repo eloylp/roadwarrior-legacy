@@ -11,11 +11,11 @@ class RoadWarrior(object):
 
     def run(self):
         try:
-            builder = locate('.'.join(['factory',
+            factory = locate('.'.join(['factory',
                                        str(sys.argv[1]).lower(),
                                        str(sys.argv[1]).lower().capitalize() + 'Factory'
                                        ]))
-            mediator = builder.build()
+            mediator = factory.build()
             mediator.start()
         except (IndexError, TypeError):
             print("Program identity not valid.")
