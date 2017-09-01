@@ -10,8 +10,36 @@ from RPi import GPIO
 from roadwarrior.device.sensor.definition import Sensors
 
 
-class UltrasonicSensor(object):
-    def __init__(self, sensor_key, pin_trigger, pin_echo):
+class InstrumentAdapterBase(object):
+    def __init__(self, precision=1):
+
+        self.precision = precision
+
+    def adjust_precision(self, value):
+
+        if type(value) in [int, float]:
+            return self.__adjust_precision_from_value(value)
+        elif type(value) in [list, tuple]:
+            return self.__adjust_precision_from_iterable(value)
+        else:
+            raise TypeError
+
+    def __adjust_precision_from_value(self, value):
+
+        return round(value, self.precision)
+
+    def __adjust_precision_from_iterable(self, iterable):
+        value_list = []
+        for value in iterable:
+            value_list.append(round(value, self.precision))
+        return tuple(value_list)
+
+
+
+class UltrasonicSensor(InstrumentAdapterBase):
+    def __init__(self, sensor_key, pin_trigger, pin_echo, precision=2):
+
+        InstrumentAdapterBase.__init__(self, precision)
 
         self.sensor_key = sensor_key
         self.PIN_TRIG = pin_trigger
@@ -57,15 +85,14 @@ class UltrasonicSensor(object):
 
         duration = pend - pstart
         distance_meters = (duration * 343) / 2
-        distance_cm = round((distance_meters * 100), 2)
-
+        distance_cm = distance_meters * 100
+        distance_cm = self.adjust_precision(distance_cm)
         return distance_cm
 
 
 class SensorFactory(object):
     @staticmethod
     def get_sensors():
-
         instrument_factory = InstrumentsFactory()
         return (
             UltrasonicSensor(Sensors.FRONT_LEFT, 27, 22),
@@ -92,25 +119,29 @@ class InstrumentsFactory(object):
         return Compass(self.call_sensor())
 
 
-class InclinometerAdapter(object):
-    def __init__(self, sensor_key, inclinometer):
+class InclinometerAdapter(InstrumentAdapterBase):
+    def __init__(self, sensor_key, inclinometer, precision=1):
         """
         :type inclinometer: Inclinometer
         """
+        InstrumentAdapterBase.__init__(self, precision)
         self.sensor_key = sensor_key
         self.inclinometer = inclinometer
 
     def make_measurement(self):
-        return self.inclinometer.get_inclination()
+        measurement = self.inclinometer.get_inclination()
+        return self.adjust_precision(measurement)
 
 
-class CompassAdapter(object):
-    def __init__(self, sensor_key, compass):
+class CompassAdapter(InstrumentAdapterBase):
+    def __init__(self, sensor_key, compass, precision=1):
         """
         :type compass: Compass
         """
+        InstrumentAdapterBase.__init__(self, precision)
         self.sensor_key = sensor_key
         self.compass = compass
 
     def make_measurement(self):
-        return self.compass.get_heading()
+        heading = self.compass.get_heading()
+        return self.adjust_precision(heading)
